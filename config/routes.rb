@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'home#dashboard'
 
+  get '/favicon_index' => 'home#favicon_index', as: :favicon_index
+
   post '/find_favicon' => 'home#find_favicon', as: :find_favicon
   post '/import' => 'home#import', as: :import
 

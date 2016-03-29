@@ -1,11 +1,54 @@
+$color1: #dab63a
+$color2: #dc9f40
+$color3: #4ee88d
+$color4: #4dad54
+
+.color1
+  color: $color1
+.color2
+  color: $color2
+.color3
+  color: $color3
+.color4
+  color: $color4
+
 .favicon-container
   margin: 10px
   div
     display: inline-block
-    width: 300px
     font-size: 14px
     line-height: 20px
+    width: 300px
   img
     height: 20px
     vertical-align: middle
     display: inline-block
+
+.homepage
+  font-family: 'avenir'
+  witdth: 100%
+  text-align: center
+  h2
+    text-transform: uppercase
+    font-size: 30px
+  input
+    width: 35%
+    border-radius: 3px
+    border: 1px solid $color1
+    line-height: 30px
+    font-size: 20px
+    padding-left: 10px
+    padding-right: 10px
+  .submit-btn
+    border-radius: 3px
+    background-color: $color4
+    color: white
+    font-size: 20px
+    border: 1px solid $color4
+    width: 35px
+    line-height: 27px
+  .favicon-container
+    div
+      width: inherit
+  .error
+    color: $color2

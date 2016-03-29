@@ -1,13 +1,17 @@
-= form_tag find_favicon_path do
-  = text_field_tag :site_url
-  = submit_tag "Find Favicon"
+.homepage
+  %h2
+    %span.color1 Favicon 
+    %span.color4 Finder
+    %span.color4
 
+  - @errors.each do |error|
+    .error= error
+  = form_tag find_favicon_path do
+    = text_field_tag :site_url, nil, placeholder: 'example.com'
+    = button_tag(type: 'submit', class: 'submit-btn') do
+      .fa.fa-search
 
-= form_tag import_path, multipart: true do
-  = file_field_tag :file
-  = submit_tag "Import Urls CSV"
-
-- Favicon.all.each do |favicon|
-  .favicon-container
-    =image_tag favicon.favicon_url
-    %div= favicon.site_url
+  - if @favicon.present?
+    .favicon-container
+      =image_tag @favicon.favicon_url
+      %div= @favicon.site_url
