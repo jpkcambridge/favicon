@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  site_url: MyString
+  favicon_url: MyString
+
+two:
+  site_url: MyString
+  favicon_url: MyString
