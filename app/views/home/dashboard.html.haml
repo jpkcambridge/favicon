@@ -1,3 +1,8 @@
+= form_tag find_favicon_path do
+  = text_field_tag :site_url
+  = submit_tag "Find Favicon"
+
+
 = form_tag import_path, multipart: true do
   = file_field_tag :file
   = submit_tag "Import Urls CSV"

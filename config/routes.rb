@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'home#dashboard'
 
+  post '/find_favicon' => 'home#find_favicon', as: :find_favicon
   post '/import' => 'home#import', as: :import
 
   # The priority is based upon order of creation: first created -> highest priority.
