@@ -2,7 +2,7 @@
   = file_field_tag :file
   = submit_tag "Import Urls CSV"
 
-- Favicon.all.each do |favicon|
+- Favicon.all.first(100).each do |favicon|
   .favicon-container
     =image_tag favicon.favicon_url
     %div= favicon.site_url_host

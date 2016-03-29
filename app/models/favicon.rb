@@ -1,3 +1,4 @@
+require 'timeout'
 require 'open-uri'
 require 'nokogiri'
 
@@ -7,8 +8,10 @@ class Favicon < ActiveRecord::Base
     count = 0
     CSV.foreach(file.path, headers: false) do |row|
       begin
-        self.find_favicon "http://#{row[1]}"
-        count += 1
+        Timeout::timeout(2) {
+          self.find_favicon "http://#{row[1]}"
+          count += 1
+        }
       rescue
         logger.info "could not find #{row[1]}"
       end
