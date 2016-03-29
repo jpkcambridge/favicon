@@ -38,7 +38,25 @@ class Favicon < ActiveRecord::Base
     
     #TODO check for size of favicon, if 0 look for link tags on page and grab one
     favicon_url = "#{base_uri.scheme}://#{base_uri.host}/favicon.ico"
+    unless favicon_url_works?(favicon_url)
+      favicon_url = fetch_link_tag_hreg(page_results)
+    end
 
     Favicon.create(site_url_scheme: site_url_scheme, site_url_host: site_url_host, site_url_path: site_url_path, requested_url: requested_url, favicon_url: favicon_url)
+  end
+
+  def self.favicon_url_works?(favicon_url)
+    result = open(favicon_url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, :allow_redirections => :safe}) rescue nil
+    if result.present?
+      true
+    else
+      false
+    end
+  end
+
+  def self.fetch_link_tag_hreg(page_results)
+    x = Nokogiri.HTML(page_results)
+    x.css("link[rel*=icon]").attribute('href').value
+    # check for http in href value
   end
 end
