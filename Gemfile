@@ -2,6 +2,12 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
 
+
+
+gem 'open_uri_redirections'
+
+
+
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'pg'
@@ -18,6 +24,7 @@ gem 'jquery-rails'
 # gem 'turbolinks'
 
 group :development, :test do
+  gem 'pry'
   gem 'byebug'
 end
 
