@@ -15,7 +15,7 @@ class Favicon < ActiveRecord::Base
       rescue
         logger.info "could not find #{row[1]}"
       end
-      break if count > 1000
+      break if count > 5000
     end
   end
 
