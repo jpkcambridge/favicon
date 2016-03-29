@@ -25,7 +25,7 @@ class Favicon < ActiveRecord::Base
     page_results = open(home_page_url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, :allow_redirections => :safe})
     base_uri = page_results.base_uri
     site_url = "#{base_uri.scheme}://#{base_uri.host + base_uri.path}"
-    favicon_url = site_url + '/favicon.ico'
+    favicon_url = "#{base_uri.scheme}://#{base_uri.host}/favicon.ico"
     Favicon.create(site_url: site_url, favicon_url: favicon_url)
   end
 end
