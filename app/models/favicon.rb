@@ -20,13 +20,17 @@ class Favicon < ActiveRecord::Base
   end
 
   #TODO add get fresh option to do another lookup even if one exists in db
-  def self.find_favicon(requested_url) #note requested_url is the result of user input and treatment by home_controller
+  def self.find_favicon(requested_url, get_fresh=false) #note requested_url is the result of user input and treatment by home_controller
     requested_url_host = URI.parse(requested_url).host
-    favicon = Favicon.where(site_url_host: [requested_url_host, "www.#{requested_url_host}"]).last
-    if favicon.present?
-      favicon
+    if get_fresh
+        self.fetch_favicon(requested_url)
     else
-      self.fetch_favicon(requested_url)
+      favicon = Favicon.where(site_url_host: [requested_url_host, "www.#{requested_url_host}"]).last
+      if favicon.present?
+        favicon
+      else
+        self.fetch_favicon(requested_url)
+      end
     end
   end
 
