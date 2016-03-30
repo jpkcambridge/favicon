@@ -19,7 +19,6 @@ class Favicon < ActiveRecord::Base
     end
   end
 
-  #TODO add get fresh option to do another lookup even if one exists in db
   def self.find_favicon(requested_url, get_fresh=false) #note requested_url is the result of user input and treatment by home_controller
     requested_url_host = URI.parse(requested_url).host
     if get_fresh
@@ -43,7 +42,6 @@ class Favicon < ActiveRecord::Base
 
     site_url = "#{base_uri.scheme}://#{base_uri.host + site_url_path}"
     
-    #TODO check for size of favicon, if 0 look for link tags on page and grab one
     favicon_url = "#{base_uri.scheme}://#{base_uri.host}/favicon.ico"
     unless favicon_url_works?(favicon_url)
       favicon_url = fetch_link_tag_hreg(page_results)
@@ -64,6 +62,6 @@ class Favicon < ActiveRecord::Base
   def self.fetch_link_tag_hreg(page_results)
     x = Nokogiri.HTML(page_results)
     x.css("link[rel*=icon]").attribute('href').value
-    # check for http in href value
+    #TODO check for http in href value
   end
 end
